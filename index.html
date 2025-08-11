@@ -926,8 +926,8 @@
             showSection('home');
         }
 
-        // Initialize portfolio
-        function initializePortfolio() {
+        // Initialize portfolio with media validation
+        async function initializePortfolio() {
             if (!portfolioData) return;
 
             // Update hero section
@@ -935,11 +935,22 @@
             document.getElementById('hero-title').textContent = portfolioData.personal.title;
             document.getElementById('hero-bio').textContent = portfolioData.personal.bio;
             
-            // Profile image
+            // Profile image with validation
             const profileImage = document.getElementById('profile-image');
             if (portfolioData.personal.profileImage && portfolioData.personal.profileImage.trim() !== '') {
-                profileImage.src = portfolioData.personal.profileImage;
-                profileImage.style.display = 'block';
+                const imageExists = await checkMediaExists(portfolioData.personal.profileImage);
+                if (imageExists) {
+                    profileImage.src = portfolioData.personal.profileImage;
+                    profileImage.style.display = 'block';
+                    profileImage.onerror = () => {
+                        console.error('Failed to load profile image:', portfolioData.personal.profileImage);
+                        profileImage.style.display = 'none';
+                    };
+                } else {
+                    profileImage.style.display = 'none';
+                }
+            } else {
+                profileImage.style.display = 'none';
             }
             
             // Contact links
@@ -960,6 +971,13 @@
             generateAwardCards();
             generateEducationContent();
             generateSkillsContent();
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== document.getElementById('modal')) return;
+            
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
 
         // Generate cards
@@ -1096,8 +1114,42 @@
             menuIcon.textContent = '☰';
         }
 
-        // Modal functions
-        function openModal(id, type) {
+        // Media error handling
+        function handleMediaError(element) {
+            element.style.display = 'none';
+            element.parentElement.style.display = 'none';
+        }
+
+        function checkMediaExists(src) {
+            return new Promise((resolve) => {
+                if (!src || src.trim() === '') {
+                    resolve(false);
+                    return;
+                }
+                
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = src;
+            });
+        }
+
+        function checkVideoExists(src) {
+            return new Promise((resolve) => {
+                if (!src || src.trim() === '') {
+                    resolve(false);
+                    return;
+                }
+                
+                const video = document.createElement('video');
+                video.onloadedmetadata = () => resolve(true);
+                video.onerror = () => resolve(false);
+                video.src = src;
+            });
+        }
+
+        // Modal functions with media validation
+        async function openModal(id, type) {
             const item = portfolioData[type].find(item => item.id === id);
             if (!item) return;
 
@@ -1118,33 +1170,52 @@
                 linksContainer.innerHTML = '';
             }
             
-            // Media gallery
+            // Media gallery with validation
             const mediaContainer = document.getElementById('modal-media');
             if (item.media && (item.media.images.length > 0 || item.media.videos.length > 0)) {
-                let mediaHTML = '<h4>📸 Media Gallery</h4><div class="media-grid">';
+                let validMediaHTML = '';
+                let hasValidMedia = false;
                 
-                item.media.images.forEach(imagePath => {
+                // Check images
+                for (const imagePath of item.media.images) {
                     if (imagePath && imagePath.trim() !== '') {
-                        mediaHTML += `
-                            <div class="media-item" onclick="openMediaViewer('${imagePath}', 'image')">
-                                <img src="${imagePath}" alt="Media" loading="lazy">
-                            </div>
-                        `;
+                        const exists = await checkMediaExists(imagePath);
+                        if (exists) {
+                            validMediaHTML += `
+                                <div class="media-item" onclick="openMediaViewer('${imagePath}', 'image')">
+                                    <img src="${imagePath}" alt="Media" loading="lazy" onerror="handleMediaError(this)">
+                                </div>
+                            `;
+                            hasValidMedia = true;
+                        }
                     }
-                });
+                }
                 
-                item.media.videos.forEach(videoPath => {
+                // Check videos
+                for (const videoPath of item.media.videos) {
                     if (videoPath && videoPath.trim() !== '') {
-                        mediaHTML += `
-                            <div class="media-item" onclick="openMediaViewer('${videoPath}', 'video')">
-                                <video src="${videoPath}" preload="metadata"></video>
-                            </div>
-                        `;
+                        const exists = await checkVideoExists(videoPath);
+                        if (exists) {
+                            validMediaHTML += `
+                                <div class="media-item" onclick="openMediaViewer('${videoPath}', 'video')">
+                                    <video src="${videoPath}" preload="metadata" onerror="handleMediaError(this)"></video>
+                                    <div class="video-overlay">▶</div>
+                                </div>
+                            `;
+                            hasValidMedia = true;
+                        }
                     }
-                });
+                }
                 
-                mediaHTML += '</div>';
-                mediaContainer.innerHTML = mediaHTML;
+                // Only show media gallery if there's valid media
+                if (hasValidMedia) {
+                    mediaContainer.innerHTML = `
+                        <h4>📸 Media Gallery</h4>
+                        <div class="media-grid">${validMediaHTML}</div>
+                    `;
+                } else {
+                    mediaContainer.innerHTML = '';
+                }
             } else {
                 mediaContainer.innerHTML = '';
             }
@@ -1161,14 +1232,7 @@
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal(event) {
-            if (event && event.target !== document.getElementById('modal')) return;
-            
-            document.getElementById('modal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Media viewer functions
+        // Media viewer functions with error handling
         function openMediaViewer(src, type) {
             const viewer = document.getElementById('media-viewer');
             const img = document.getElementById('viewer-image');
@@ -1177,11 +1241,19 @@
             if (type === 'image') {
                 img.src = src;
                 img.style.display = 'block';
+                img.onerror = () => {
+                    console.error('Failed to load image:', src);
+                    closeMediaViewer();
+                };
                 video.style.display = 'none';
                 video.pause();
             } else if (type === 'video') {
                 video.src = src;
                 video.style.display = 'block';
+                video.onerror = () => {
+                    console.error('Failed to load video:', src);
+                    closeMediaViewer();
+                };
                 img.style.display = 'none';
             }
             
