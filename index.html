@@ -22,7 +22,6 @@
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             --gradient-text: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --blur-bg: rgba(255, 255, 255, 0.8);
         }
@@ -39,12 +38,6 @@
             --border-medium: #475569;
             --card-bg: #1e293b;
             --card-hover: rgba(30, 41, 59, 0.8);
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             --gradient-text: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
             --blur-bg: rgba(15, 23, 42, 0.8);
         }
@@ -56,12 +49,11 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-x: hidden;
+            transition: all 0.3s ease;
         }
 
         .container {
@@ -77,10 +69,9 @@
             left: 0;
             right: 0;
             background: var(--blur-bg);
-            backdrop-filter: blur(20px) saturate(180%);
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-light);
             z-index: 100;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav {
@@ -89,7 +80,6 @@
             align-items: center;
             padding: 1rem 0;
             height: 70px;
-            position: relative;
         }
 
         .logo {
@@ -99,7 +89,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: -0.02em;
         }
 
         .nav-links {
@@ -112,12 +101,10 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: color 0.2s;
             cursor: pointer;
             padding: 0.5rem 1rem;
             border-radius: 0.75rem;
-            position: relative;
         }
 
         .nav-links a:hover,
@@ -140,15 +127,7 @@
             padding: 0.75rem;
             border-radius: 1rem;
             cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 1.1rem;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .mobile-menu-btn:hover {
-            background: var(--card-hover);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
         }
 
         .theme-toggle {
@@ -158,18 +137,7 @@
             padding: 0.75rem;
             border-radius: 1rem;
             cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-size: 1.1rem;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .theme-toggle:hover {
-            background: var(--card-hover);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
         }
 
         /* Main Content */
@@ -180,11 +148,11 @@
 
         .section {
             display: none;
-            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .section.active {
             display: block;
+            animation: fadeIn 0.3s ease;
         }
 
         @keyframes fadeIn {
@@ -199,6 +167,22 @@
             background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
         }
 
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--border-light);
+            box-shadow: var(--shadow-lg);
+            margin: 0 auto 2rem;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
         .hero-name {
             font-size: clamp(3rem, 8vw, 5rem);
             font-weight: 800;
@@ -207,12 +191,10 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
         }
 
         .hero-title {
-            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            font-size: 1.5rem;
             color: var(--text-secondary);
             margin-bottom: 2rem;
             font-weight: 500;
@@ -223,7 +205,6 @@
             margin: 0 auto 3rem;
             color: var(--text-secondary);
             font-size: 1.1rem;
-            line-height: 1.7;
         }
 
         .contact-links {
@@ -240,32 +221,13 @@
             text-decoration: none;
             border-radius: 1rem;
             font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s ease;
             box-shadow: var(--shadow-md);
-            border: none;
-            position: relative;
-            overflow: hidden;
         }
 
         .contact-link:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-xl);
-        }
-
-        .contact-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .contact-link:hover::before {
-            left: 100%;
         }
 
         /* Section Headers */
@@ -276,21 +238,13 @@
         }
 
         .section-title {
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: 3rem;
             font-weight: 800;
             margin-bottom: 1rem;
             background: var(--gradient-text);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: -0.02em;
-        }
-
-        .section-subtitle {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
         }
 
         /* Cards */
@@ -307,37 +261,15 @@
             border-radius: 1.5rem;
             padding: 2rem;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             box-shadow: var(--shadow-sm);
             position: relative;
             overflow: hidden;
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-primary);
-            transform: scaleX(0);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-origin: left;
-        }
-
-        .card:hover::before {
-            transform: scaleX(1);
-        }
-
         .card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-xl);
-            border-color: var(--border-medium);
-        }
-
-        .card-header {
-            margin-bottom: 1.5rem;
         }
 
         .card-title {
@@ -345,27 +277,23 @@
             font-weight: 700;
             margin-bottom: 0.5rem;
             color: var(--text-primary);
-            letter-spacing: -0.01em;
         }
 
         .card-meta {
             color: var(--text-tertiary);
             font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
 
         .card-summary {
             color: var(--text-secondary);
-            line-height: 1.6;
-            font-size: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .tech-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.75rem;
-            margin-top: 1.5rem;
         }
 
         .tech-tag {
@@ -375,14 +303,6 @@
             border-radius: 2rem;
             font-size: 0.85rem;
             font-weight: 600;
-            border: 1px solid var(--border-light);
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .tech-tag:hover {
-            background: var(--text-accent);
-            color: white;
-            transform: translateY(-1px);
         }
 
         /* Modal */
@@ -396,7 +316,6 @@
             background: rgba(0, 0, 0, 0.6);
             z-index: 200;
             backdrop-filter: blur(8px);
-            animation: modalFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .modal.active {
@@ -405,63 +324,97 @@
             justify-content: center;
         }
 
-        @keyframes modalFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
         .modal-content {
             background: var(--card-bg);
             border-radius: 2rem;
             padding: 3rem;
-            max-width: 700px;
-            max-height: 85vh;
+            max-width: 800px;
+            max-height: 90vh;
             overflow-y: auto;
             margin: 1rem;
             box-shadow: var(--shadow-xl);
-            border: 1px solid var(--border-light);
             position: relative;
-            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes modalSlideIn {
-            from { opacity: 0; transform: translateY(30px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        .modal-header {
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-light);
         }
 
         .modal-title {
             font-size: 2rem;
             font-weight: 800;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
         }
 
         .modal-description {
             color: var(--text-secondary);
             line-height: 1.7;
             margin-bottom: 2rem;
-            font-size: 1.05rem;
+        }
+
+        .modal-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .modal-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-tertiary);
+            color: var(--text-accent);
+            text-decoration: none;
+            border-radius: 1rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .modal-link:hover {
+            background: var(--text-accent);
+            color: white;
+        }
+
+        .media-gallery h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .media-item {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .media-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .media-item img,
+        .media-item video {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
         }
 
         .close-btn {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
+            top: 1rem;
+            right: 1rem;
             background: var(--bg-tertiary);
-            border: 1px solid var(--border-light);
+            border: none;
             color: var(--text-secondary);
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             cursor: pointer;
             padding: 0.75rem;
             border-radius: 1rem;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             width: 2.5rem;
             height: 2.5rem;
             display: flex;
@@ -469,18 +422,42 @@
             justify-content: center;
         }
 
-        .close-btn:hover {
-            background: var(--card-hover);
-            color: var(--text-primary);
-            transform: scale(1.05);
+        /* Media Viewer */
+        .media-viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Skills Section */
+        .media-viewer.active {
+            display: flex;
+        }
+
+        .media-viewer-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+        }
+
+        .media-viewer img,
+        .media-viewer video {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        /* Skills */
         .skills-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-bottom: 4rem;
         }
 
         .skills-category {
@@ -488,21 +465,11 @@
             border: 1px solid var(--border-light);
             border-radius: 1.5rem;
             padding: 2rem;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .skills-category:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
         }
 
         .skills-category h3 {
             margin-bottom: 1.5rem;
-            color: var(--text-primary);
             font-weight: 700;
-            font-size: 1.25rem;
-            letter-spacing: -0.01em;
         }
 
         .skills-list {
@@ -513,61 +480,30 @@
 
         .skill-item {
             background: var(--bg-secondary);
-            border: 1px solid var(--border-light);
             padding: 0.75rem 1rem;
             border-radius: 1rem;
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--text-primary);
+            transition: all 0.2s ease;
         }
 
         .skill-item:hover {
             background: var(--text-accent);
             color: white;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
         }
 
-        /* Education Section */
+        /* Education */
         .education-card {
             background: var(--card-bg);
             border: 1px solid var(--border-light);
             border-radius: 2rem;
             padding: 3rem;
-            margin-bottom: 4rem;
             box-shadow: var(--shadow-md);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .education-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: var(--gradient-primary);
-        }
-
-        .education-header {
-            margin-bottom: 2rem;
         }
 
         .education-degree {
             font-size: 2rem;
             font-weight: 800;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-        }
-
-        .education-school {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-            font-weight: 500;
+            margin-bottom: 1rem;
         }
 
         .education-gpa {
@@ -577,50 +513,29 @@
             padding: 0.5rem 1rem;
             border-radius: 1rem;
             font-weight: 600;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-
-        .coursework-section {
-            margin-top: 2rem;
-        }
-
-        .coursework-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
+            margin-top: 1rem;
         }
 
         .coursework {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1rem;
+            margin-top: 1rem;
         }
 
         .course {
             background: var(--bg-secondary);
             padding: 1rem;
             border-radius: 1rem;
-            font-size: 0.95rem;
-            font-weight: 500;
-            border: 1px solid var(--border-light);
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .course:hover {
-            background: var(--card-hover);
-            transform: translateY(-2px);
-        }
-
-        /* Loading State */
+        /* Loading */
         .loading {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 50vh;
-            color: var(--text-secondary);
         }
 
         .loading-spinner {
@@ -638,7 +553,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Responsive Design */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             .container {
                 padding: 0 1rem;
@@ -656,19 +571,15 @@
                 left: 0;
                 right: 0;
                 background: var(--blur-bg);
-                backdrop-filter: blur(20px) saturate(180%);
-                border-bottom: 1px solid var(--border-light);
+                backdrop-filter: blur(20px);
                 flex-direction: column;
                 padding: 1.5rem;
                 gap: 1rem;
                 transform: translateY(-100%);
                 opacity: 0;
                 visibility: hidden;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: all 0.3s ease;
                 z-index: 90;
-                box-shadow: var(--shadow-lg);
-                max-height: calc(100vh - 70px);
-                overflow-y: auto;
             }
 
             .nav-links.active {
@@ -677,146 +588,36 @@
                 visibility: visible;
             }
 
-            .nav-links li {
-                width: 100%;
-            }
-
             .nav-links a {
                 display: block;
                 width: 100%;
                 text-align: center;
-                padding: 1.25rem 1.5rem;
-                font-size: 1.1rem;
-                font-weight: 600;
-                border-radius: 1rem;
+                padding: 1.25rem;
                 background: var(--card-bg);
                 border: 1px solid var(--border-light);
-                margin: 0;
-                box-shadow: var(--shadow-sm);
-                transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-
-            .nav-links a:hover,
-            .nav-links a.active {
-                background: var(--text-accent);
-                color: white;
-                transform: translateY(-2px);
-                box-shadow: var(--shadow-md);
+                border-radius: 1rem;
             }
 
             .hero {
                 padding: 4rem 0 3rem;
             }
 
-            .hero-name {
-                font-size: 2.5rem;
-            }
-
             .cards-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .card {
-                padding: 1.5rem;
             }
 
             .modal-content {
-                margin: 0.5rem;
                 padding: 2rem;
-                border-radius: 1.5rem;
-                max-height: 90vh;
-            }
-
-            .section-header {
-                padding-top: 2rem;
-                margin-bottom: 2rem;
+                margin: 0.5rem;
             }
 
             .skills-container {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
             }
 
-            .education-card {
-                padding: 2rem;
-            }
-
-            .coursework {
-                grid-template-columns: 1fr;
-            }
-
-            /* Fix mobile scrolling when menu is open */
             body.mobile-menu-open {
                 overflow: hidden;
             }
-        }
-
-        /* Extra small devices (phones in portrait) */
-        @media (max-width: 480px) {
-            .nav-links {
-                padding: 1rem;
-                gap: 0.75rem;
-            }
-
-            .nav-links a {
-                padding: 1rem 1.25rem;
-                font-size: 1rem;
-            }
-
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .contact-link {
-                width: 100%;
-                max-width: 280px;
-                text-align: center;
-            }
-
-            .hero-name {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-
-        /* Large phones and small tablets */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .cards-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .contact-link {
-                width: 100%;
-                max-width: 250px;
-                text-align: center;
-            }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Focus styles for accessibility */
-        .nav-links a:focus,
-        .theme-toggle:focus,
-        .contact-link:focus,
-        .card:focus {
-            outline: 2px solid var(--text-accent);
-            outline-offset: 2px;
         }
     </style>
 </head>
@@ -855,12 +656,12 @@
             <!-- Home Section -->
             <section id="home" class="section">
                 <div class="hero">
+                    <img id="profile-image" class="profile-image" src="" alt="Profile" style="display: none;">
                     <h1 class="hero-name" id="hero-name">Anurag Kapila</h1>
                     <p class="hero-title" id="hero-title">Mathematics & Computer Science Student</p>
                     <p class="hero-bio" id="hero-bio">Loading...</p>
-                    <div class="contact-links">
-                        <a href="#" class="contact-link" id="email-link">✉️ Email</a>
-                        <a href="#" class="contact-link" id="linkedin-link" target="_blank">🔗 LinkedIn</a>
+                    <div class="contact-links" id="contact-links">
+                        <!-- Links populated dynamically -->
                     </div>
                 </div>
             </section>
@@ -869,7 +670,6 @@
             <section id="experience" class="section">
                 <div class="section-header">
                     <h2 class="section-title">Experience</h2>
-                    <p class="section-subtitle">My professional journey in machine learning, research, and software development</p>
                 </div>
                 <div id="experience-cards" class="cards-grid"></div>
             </section>
@@ -878,7 +678,6 @@
             <section id="projects" class="section">
                 <div class="section-header">
                     <h2 class="section-title">Projects</h2>
-                    <p class="section-subtitle">Innovative solutions and creative implementations</p>
                 </div>
                 <div id="projects-cards" class="cards-grid"></div>
             </section>
@@ -886,8 +685,7 @@
             <!-- Awards Section -->
             <section id="awards" class="section">
                 <div class="section-header">
-                    <h2 class="section-title">Awards & Recognition</h2>
-                    <p class="section-subtitle">Achievements in competitions and academic excellence</p>
+                    <h2 class="section-title">Awards</h2>
                 </div>
                 <div id="awards-cards" class="cards-grid"></div>
             </section>
@@ -896,7 +694,6 @@
             <section id="education" class="section">
                 <div class="section-header">
                     <h2 class="section-title">Education</h2>
-                    <p class="section-subtitle">Academic foundation and continuous learning</p>
                 </div>
                 <div id="education-content"></div>
             </section>
@@ -904,8 +701,7 @@
             <!-- Skills Section -->
             <section id="skills" class="section">
                 <div class="section-header">
-                    <h2 class="section-title">Skills & Technologies</h2>
-                    <p class="section-subtitle">Technical expertise across multiple domains</p>
+                    <h2 class="section-title">Skills</h2>
                 </div>
                 <div id="skills-content" class="skills-container"></div>
             </section>
@@ -916,55 +712,53 @@
     <div id="modal" class="modal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="close-btn" onclick="closeModal()">&times;</button>
-            <div class="modal-header">
-                <h2 class="modal-title" id="modal-title"></h2>
-                <div class="card-meta" id="modal-meta"></div>
-            </div>
+            <h2 class="modal-title" id="modal-title"></h2>
+            <div class="card-meta" id="modal-meta"></div>
             <div class="modal-description" id="modal-description"></div>
+            <div class="modal-links" id="modal-links"></div>
+            <div class="media-gallery" id="modal-media"></div>
             <div class="tech-tags" id="modal-tech"></div>
+        </div>
+    </div>
+
+    <!-- Media Viewer -->
+    <div id="media-viewer" class="media-viewer" onclick="closeMediaViewer(event)">
+        <div class="media-viewer-content" onclick="event.stopPropagation()">
+            <img id="viewer-image" style="display: none;" alt="Media">
+            <video id="viewer-video" style="display: none;" controls></video>
         </div>
     </div>
 
     <script>
         let portfolioData = null;
 
-        // Load portfolio data with embedded fallback
-        async function loadData() {
-            // Use embedded data by default
-            portfolioData = getFallbackData();
-            
-            // Try to fetch external JSON file to override embedded data
-            try {
-                const response = await fetch('./portfolio-data.json');
-                
-                if (response.ok) {
-                    const text = await response.text();
-                    const externalData = JSON.parse(text);
-                    portfolioData = externalData;
-                    console.log('✅ Loaded data from portfolio-data.json');
-                } else {
-                    console.log('📄 Using embedded portfolio data (portfolio-data.json not found)');
-                }
-            } catch (error) {
-                // Silently use embedded data - no error shown to user
-                console.log('📄 Using embedded portfolio data');
-            }
-            
-            // Initialize with whatever data we have
-            initializePortfolio();
-            document.getElementById('loading').style.display = 'none';
-            showSection('home');
-        }
-
-        // Full portfolio data embedded as fallback
-        function getFallbackData() {
+        // Embedded portfolio data
+        function getPortfolioData() {
             return {
                 "personal": {
                     "name": "Anurag Kapila",
                     "email": "akapila@cs.cmu.edu",
                     "linkedin": "http://linkedin.com/in/anurag-kapila",
                     "title": "Mathematics & Computer Science Student",
-                    "bio": "Passionate about machine learning, deep learning, and computational research. Currently pursuing B.S. in Mathematics and Computer Science at Carnegie Mellon University."
+                    "bio": "Passionate about machine learning, deep learning, and computational research. Currently pursuing B.S. in Mathematics and Computer Science at Carnegie Mellon University.",
+                    "profileImage": "",
+                    "links": [
+                        {
+                            "name": "Email",
+                            "url": "mailto:akapila@cs.cmu.edu",
+                            "icon": "✉️"
+                        },
+                        {
+                            "name": "LinkedIn",
+                            "url": "http://linkedin.com/in/anurag-kapila",
+                            "icon": "🔗"
+                        },
+                        {
+                            "name": "GitHub",
+                            "url": "https://github.com/anuragkapila",
+                            "icon": "💻"
+                        }
+                    ]
                 },
                 "education": {
                     "degree": "B.S. Mathematics and Computer Science",
@@ -989,8 +783,13 @@
                         "company": "Grey Chain AI",
                         "period": "July 2025 - August 2025",
                         "summary": "Built enterprise-grade FastAPI for document metadata extraction",
-                        "description": "Developed a comprehensive document processing solution from scratch, implementing advanced OCR techniques with PyTesseract for data ingestion. Created a custom RAG (Retrieval Augmented Generation) pipeline with model-agnostic retrieval capabilities, preset to Gemini 2.5 Flash for optimal performance. The FastAPI backend was designed for enterprise-scale document metadata extraction with high accuracy and efficiency.",
-                        "technologies": ["FastAPI", "PyTesseract", "RAG", "Gemini 2.5 Flash", "OCR", "Python"]
+                        "description": "Developed a comprehensive document processing solution from scratch, implementing advanced OCR techniques with PyTesseract for data ingestion. Created a custom RAG (Retrieval Augmented Generation) pipeline with model-agnostic retrieval capabilities, preset to Gemini 2.5 Flash for optimal performance.",
+                        "technologies": ["FastAPI", "PyTesseract", "RAG", "Gemini 2.5 Flash", "OCR", "Python"],
+                        "links": [],
+                        "media": {
+                            "images": [],
+                            "videos": []
+                        }
                     },
                     {
                         "id": "packed",
@@ -998,8 +797,13 @@
                         "company": "Packed AI", 
                         "period": "May 2025 – July 2025",
                         "summary": "Enhanced AI search capabilities through RAG implementation",
-                        "description": "Focused on improving AI-powered search functionality by implementing Retrieval Augmented Generation (RAG) systems. Built automated SQL command generation tools for seamless database integration. Deployed scalable applications using AWS cloud services and Docker containerization, ensuring robust production environments capable of handling enterprise-level traffic.",
-                        "technologies": ["RAG", "SQL", "AWS", "Docker", "Python", "Database Integration"]
+                        "description": "Focused on improving AI-powered search functionality by implementing Retrieval Augmented Generation (RAG) systems. Built automated SQL command generation tools for seamless database integration. Deployed scalable applications using AWS cloud services and Docker containerization.",
+                        "technologies": ["RAG", "SQL", "AWS", "Docker", "Python"],
+                        "links": [],
+                        "media": {
+                            "images": [],
+                            "videos": []
+                        }
                     },
                     {
                         "id": "cmu_research",
@@ -1007,8 +811,13 @@
                         "company": "Carnegie Mellon University",
                         "period": "December 2024 - Present",
                         "summary": "Research Assistant in Dr. Oana Carja's lab",
-                        "description": "Working on cutting-edge medical AI applications, specifically developing CNN architectures for blood vessel segmentation in H&E-stained histological images. Created computational models for cfDNA (cell-free DNA) fragmentation to generate synthetic training data. Currently building PyTorch neural networks for automated tumor detection, combining computer vision with medical diagnostics.",
-                        "technologies": ["CNN", "PyTorch", "Medical Imaging", "H&E Staining", "cfDNA", "Computer Vision"]
+                        "description": "Working on cutting-edge medical AI applications, specifically developing CNN architectures for blood vessel segmentation in H&E-stained histological images. Created computational models for cfDNA fragmentation to generate synthetic training data.",
+                        "technologies": ["CNN", "PyTorch", "Medical Imaging", "Computer Vision"],
+                        "links": [],
+                        "media": {
+                            "images": [],
+                            "videos": []
+                        }
                     },
                     {
                         "id": "nexus",
@@ -1016,8 +825,13 @@
                         "company": "Nexus AI (Remote)",
                         "period": "March 2025 - July 2025",
                         "summary": "Taught comprehensive AI curriculum covering LLMs, CNNs, GANs",
-                        "description": "Designed and delivered comprehensive AI education program covering Large Language Models, Convolutional Neural Networks, Generative Adversarial Networks, and multimodal AI systems. Created hands-on projects utilizing OpenAI and LangChain APIs. Provided mentorship in deep learning frameworks including PyTorch and TensorFlow, helping students build practical AI applications.",
-                        "technologies": ["LLMs", "CNNs", "GANs", "OpenAI API", "LangChain", "PyTorch", "TensorFlow"]
+                        "description": "Designed and delivered comprehensive AI education program covering Large Language Models, Convolutional Neural Networks, and Generative Adversarial Networks. Created hands-on projects utilizing OpenAI and LangChain APIs.",
+                        "technologies": ["LLMs", "CNNs", "GANs", "OpenAI API", "LangChain", "PyTorch"],
+                        "links": [],
+                        "media": {
+                            "images": [],
+                            "videos": []
+                        }
                     },
                     {
                         "id": "duke",
@@ -1025,61 +839,94 @@
                         "company": "Duke University",
                         "period": "May 2023 - December 2023", 
                         "summary": "Analyzed binding of trypsin complexes using K* algorithm",
-                        "description": "Collaborated with Duke Ph.D. candidates on advanced computational chemistry research. Applied the K* algorithm from the OSPREY computational suite to analyze molecular binding interactions of various trypsin complexes. Performed extensive ligand mutation simulations to optimize binding affinity and developed methods to improve prediction accuracy for protein-ligand interactions.",
-                        "technologies": ["OSPREY Suite", "K* Algorithm", "Molecular Modeling", "Ligand Simulation", "Computational Chemistry"]
+                        "description": "Collaborated with Duke Ph.D. candidates on advanced computational chemistry research. Applied the K* algorithm from the OSPREY computational suite to analyze molecular binding interactions of various trypsin complexes.",
+                        "technologies": ["OSPREY Suite", "K* Algorithm", "Molecular Modeling"],
+                        "links": [],
+                        "media": {
+                            "images": [],
+                            "videos": []
+                        }
                     }
                 ],
                 "awards": [
                     {
                         "id": "hrt_hackathon",
-                        "title": "HRT x CMU Hackathon - 2nd Place Grand Prize",
+                        "title": "HRT x CMU Hackathon - 2nd Place",
                         "date": "November 2024",
                         "summary": "2nd place out of 129 participants",
-                        "description": "Achieved 2nd place in the prestigious Hudson River Trading x Carnegie Mellon School of Computer Science Hack 112 Competition, competing against 129 talented participants. Developed an innovative multiplayer game that leveraged advanced graph theory concepts and implemented the Breadth-First Search algorithm to compute optimal shortest paths between actors (represented as nodes in the graph). The solution demonstrated both technical excellence and creative problem-solving.",
-                        "technologies": ["Graph Theory", "BFS Algorithm", "Game Development", "Algorithm Design"]
+                        "description": "Achieved 2nd place in the prestigious Hudson River Trading x Carnegie Mellon School of Computer Science Hack 112 Competition. Developed an innovative multiplayer game leveraging graph theory and BFS algorithms.",
+                        "technologies": ["Graph Theory", "BFS Algorithm", "Game Development"],
+                        "links": [],
+                        "media": {
+                            "images": [],
+                            "videos": []
+                        }
                     },
                     {
                         "id": "usnco", 
                         "title": "3X USNCO National Honors Distinction",
                         "date": "October 2020 - February 2024",
                         "summary": "Top 150 nationally in U.S. National Chemistry Olympiad",
-                        "description": "Consistently achieved Honors Distinction (Top 150 nationally) three times in the highly competitive U.S. National Chemistry Olympiad. Ranked in the top 2 at school level and successfully advanced to national rounds, which included rigorous multiple choice, free-response, and hands-on laboratory practical sections. This recognition demonstrates exceptional chemistry knowledge and problem-solving abilities at the national level.",
-                        "technologies": ["Analytical Chemistry", "Organic Chemistry", "Physical Chemistry", "Laboratory Techniques"]
+                        "description": "Consistently achieved Honors Distinction (Top 150 nationally) three times in the highly competitive U.S. National Chemistry Olympiad. Ranked in the top 2 at school level.",
+                        "technologies": ["Analytical Chemistry", "Organic Chemistry", "Physical Chemistry"],
+                        "links": [],
+                        "media": {
+                            "images": [],
+                            "videos": []
+                        }
                     }
                 ],
                 "skills": {
-                    "programming": [
-                        "Python", "Java", "C", "C++", "JavaScript", "HTML", "CSS", "SML", "SQL"
-                    ],
-                    "frameworks": [
-                        "TensorFlow", "PyTorch", "React", "Flask", "FastAPI"
-                    ],
-                    "specialties": [
-                        "Retrieval-Augmented Generation (RAG)",
-                        "PyTorch Modeling", 
-                        "SQL Database Management",
-                        "Machine Learning",
-                        "Deep Learning",
-                        "Computer Vision"
-                    ],
-                    "tools": [
-                        "AWS", "Docker", "Git", "OCR", "OSPREY Suite"
-                    ]
+                    "programming": ["Python", "Java", "C", "C++", "JavaScript", "HTML", "CSS", "SQL"],
+                    "frameworks": ["TensorFlow", "PyTorch", "React", "Flask", "FastAPI"],
+                    "specialties": ["Machine Learning", "Deep Learning", "Computer Vision", "RAG", "PyTorch Modeling"],
+                    "tools": ["AWS", "Docker", "Git", "OCR", "OSPREY Suite"]
                 },
                 "projects": [
                     {
                         "id": "sample_project",
                         "title": "Add Your Projects Here",
-                        "summary": "Create a portfolio-data.json file to add your projects",
-                        "description": "To add your projects, create a portfolio-data.json file in the same directory as this HTML file. The website will automatically load your project data from there. If the JSON file is not found, this embedded data is used as a fallback.",
-                        "technologies": ["JSON", "Configuration", "GitHub Pages"],
-                        "link": "https://github.com/yourusername"
+                        "summary": "Update portfolio-data.json to add your projects",
+                        "description": "To add your projects, create a portfolio-data.json file in the same directory. You can include multiple links and media galleries for each project.",
+                        "technologies": ["JSON", "Configuration"],
+                        "links": [
+                            {
+                                "name": "GitHub Repository",
+                                "url": "https://github.com/yourusername/project",
+                                "icon": "💻"
+                            }
+                        ],
+                        "media": {
+                            "images": [],
+                            "videos": []
+                        }
                     }
                 ]
             };
         }
 
-        // Initialize portfolio with data
+        // Load portfolio data
+        async function loadData() {
+            portfolioData = getPortfolioData();
+            
+            // Try to load external JSON if available
+            try {
+                const response = await fetch('./portfolio-data.json');
+                if (response.ok) {
+                    const externalData = await response.json();
+                    portfolioData = externalData;
+                    console.log('✅ Loaded external portfolio data');
+                }
+            } catch (error) {
+                console.log('📄 Using embedded portfolio data');
+            }
+            
+            initializePortfolio();
+            document.getElementById('loading').style.display = 'none';
+            showSection('home');
+        }
+
+        // Initialize portfolio
         function initializePortfolio() {
             if (!portfolioData) return;
 
@@ -1087,10 +934,27 @@
             document.getElementById('hero-name').textContent = portfolioData.personal.name;
             document.getElementById('hero-title').textContent = portfolioData.personal.title;
             document.getElementById('hero-bio').textContent = portfolioData.personal.bio;
-            document.getElementById('email-link').href = `mailto:${portfolioData.personal.email}`;
-            document.getElementById('linkedin-link').href = portfolioData.personal.linkedin;
+            
+            // Profile image
+            const profileImage = document.getElementById('profile-image');
+            if (portfolioData.personal.profileImage && portfolioData.personal.profileImage.trim() !== '') {
+                profileImage.src = portfolioData.personal.profileImage;
+                profileImage.style.display = 'block';
+            }
+            
+            // Contact links
+            const contactLinksContainer = document.getElementById('contact-links');
+            if (portfolioData.personal.links && portfolioData.personal.links.length > 0) {
+                contactLinksContainer.innerHTML = portfolioData.personal.links.map(link => 
+                    `<a href="${link.url}" class="contact-link" target="_blank">${link.icon} ${link.name}</a>`
+                ).join('');
+            } else {
+                contactLinksContainer.innerHTML = `
+                    <a href="mailto:${portfolioData.personal.email}" class="contact-link">✉️ Email</a>
+                    <a href="${portfolioData.personal.linkedin}" class="contact-link" target="_blank">🔗 LinkedIn</a>
+                `;
+            }
 
-            // Generate cards and content
             generateExperienceCards();
             generateProjectCards();
             generateAwardCards();
@@ -1098,20 +962,13 @@
             generateSkillsContent();
         }
 
-        // Generate experience cards
+        // Generate cards
         function generateExperienceCards() {
             const container = document.getElementById('experience-cards');
-            if (!portfolioData.experience || portfolioData.experience.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary); grid-column: 1 / -1;">No experience data available. Please add to portfolio-data.json</p>';
-                return;
-            }
-            
             container.innerHTML = portfolioData.experience.map(exp => `
-                <div class="card" onclick="openModal('${exp.id}', 'experience')" tabindex="0">
-                    <div class="card-header">
-                        <h3 class="card-title">${exp.title}</h3>
-                        <div class="card-meta">${exp.company} • ${exp.period}</div>
-                    </div>
+                <div class="card" onclick="openModal('${exp.id}', 'experience')">
+                    <div class="card-title">${exp.title}</div>
+                    <div class="card-meta">${exp.company} • ${exp.period}</div>
                     <div class="card-summary">${exp.summary}</div>
                     <div class="tech-tags">
                         ${exp.technologies.slice(0, 4).map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
@@ -1121,20 +978,11 @@
             `).join('');
         }
 
-        // Generate project cards
         function generateProjectCards() {
             const container = document.getElementById('projects-cards');
-            if (!portfolioData.projects || portfolioData.projects.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary); grid-column: 1 / -1;">No projects data available. Please add to portfolio-data.json</p>';
-                return;
-            }
-            
             container.innerHTML = portfolioData.projects.map(project => `
-                <div class="card" onclick="openModal('${project.id}', 'projects')" tabindex="0">
-                    <div class="card-header">
-                        <h3 class="card-title">${project.title}</h3>
-                        ${project.link ? `<div class="card-meta">🔗 <a href="${project.link}" target="_blank" onclick="event.stopPropagation()" style="color: var(--text-accent);">View Project</a></div>` : ''}
-                    </div>
+                <div class="card" onclick="openModal('${project.id}', 'projects')">
+                    <div class="card-title">${project.title}</div>
                     <div class="card-summary">${project.summary}</div>
                     <div class="tech-tags">
                         ${project.technologies.slice(0, 4).map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
@@ -1144,57 +992,40 @@
             `).join('');
         }
 
-        // Generate award cards
         function generateAwardCards() {
             const container = document.getElementById('awards-cards');
-            if (!portfolioData.awards || portfolioData.awards.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary); grid-column: 1 / -1;">No awards data available. Please add to portfolio-data.json</p>';
-                return;
-            }
-            
             container.innerHTML = portfolioData.awards.map(award => `
-                <div class="card" onclick="openModal('${award.id}', 'awards')" tabindex="0">
-                    <div class="card-header">
-                        <h3 class="card-title">${award.title}</h3>
-                        <div class="card-meta">🏆 ${award.date}</div>
-                    </div>
+                <div class="card" onclick="openModal('${award.id}', 'awards')">
+                    <div class="card-title">${award.title}</div>
+                    <div class="card-meta">🏆 ${award.date}</div>
                     <div class="card-summary">${award.summary}</div>
                     ${award.technologies ? `<div class="tech-tags">
                         ${award.technologies.slice(0, 4).map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-                        ${award.technologies.length > 4 ? `<span class="tech-tag">+${award.technologies.length - 4} more</span>` : ''}
                     </div>` : ''}
                 </div>
             `).join('');
         }
 
-        // Generate education content
         function generateEducationContent() {
             const container = document.getElementById('education-content');
             const edu = portfolioData.education;
-            
             container.innerHTML = `
                 <div class="education-card">
-                    <div class="education-header">
-                        <h3 class="education-degree">${edu.degree}</h3>
-                        <div class="education-school">${edu.school} • ${edu.location}</div>
-                        <div class="card-meta">Expected Graduation: ${edu.graduation}</div>
-                        <div class="education-gpa">GPA: ${edu.gpa}</div>
-                    </div>
-                    <div class="coursework-section">
-                        <h4 class="coursework-title">📚 Relevant Coursework</h4>
-                        <div class="coursework">
-                            ${edu.coursework.map(course => `<div class="course">${course}</div>`).join('')}
-                        </div>
+                    <div class="education-degree">${edu.degree}</div>
+                    <div class="card-meta">${edu.school} • ${edu.location}</div>
+                    <div class="card-meta">Expected Graduation: ${edu.graduation}</div>
+                    <div class="education-gpa">GPA: ${edu.gpa}</div>
+                    <h4 style="margin: 2rem 0 1rem 0;">📚 Relevant Coursework</h4>
+                    <div class="coursework">
+                        ${edu.coursework.map(course => `<div class="course">${course}</div>`).join('')}
                     </div>
                 </div>
             `;
         }
 
-        // Generate skills content
         function generateSkillsContent() {
             const container = document.getElementById('skills-content');
             const skills = portfolioData.skills;
-            
             container.innerHTML = `
                 <div class="skills-category">
                     <h3>💻 Programming Languages</h3>
@@ -1223,6 +1054,22 @@
             `;
         }
 
+        // Navigation functions
+        function showSection(sectionName) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionName).classList.add('active');
+            
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            const targetLink = document.querySelector(`.nav-links a[onclick*="showSection('${sectionName}')"]`);
+            if (targetLink) {
+                targetLink.classList.add('active');
+            }
+        }
+
         // Mobile menu functions
         function toggleMobileMenu() {
             const navLinks = document.querySelector('.nav-links');
@@ -1249,40 +1096,6 @@
             menuIcon.textContent = '☰';
         }
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
-            const navLinks = document.querySelector('.nav-links');
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            
-            if (navLinks.classList.contains('active') && 
-                !navLinks.contains(e.target) && 
-                !mobileMenuBtn.contains(e.target)) {
-                closeMobileMenu();
-            }
-        });
-
-        // Navigation
-        function showSection(sectionName) {
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Show selected section
-            document.getElementById(sectionName).classList.add('active');
-            
-            // Update nav links
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // Find and activate the correct nav link
-            const targetLink = document.querySelector(`.nav-links a[onclick*="showSection('${sectionName}')"]`);
-            if (targetLink) {
-                targetLink.classList.add('active');
-            }
-        }
-
         // Modal functions
         function openModal(id, type) {
             const item = portfolioData[type].find(item => item.id === id);
@@ -1291,11 +1104,52 @@
             document.getElementById('modal-title').textContent = item.title;
             document.getElementById('modal-meta').textContent = 
                 type === 'experience' ? `${item.company} • ${item.period}` :
-                type === 'awards' ? `🏆 ${item.date}` : 
-                type === 'projects' && item.link ? `🔗 Project Link` : '';
+                type === 'awards' ? `🏆 ${item.date}` : '';
             
             document.getElementById('modal-description').innerHTML = item.description;
             
+            // Links
+            const linksContainer = document.getElementById('modal-links');
+            if (item.links && item.links.length > 0) {
+                linksContainer.innerHTML = item.links.map(link => 
+                    `<a href="${link.url}" class="modal-link" target="_blank">${link.icon} ${link.name}</a>`
+                ).join('');
+            } else {
+                linksContainer.innerHTML = '';
+            }
+            
+            // Media gallery
+            const mediaContainer = document.getElementById('modal-media');
+            if (item.media && (item.media.images.length > 0 || item.media.videos.length > 0)) {
+                let mediaHTML = '<h4>📸 Media Gallery</h4><div class="media-grid">';
+                
+                item.media.images.forEach(imagePath => {
+                    if (imagePath && imagePath.trim() !== '') {
+                        mediaHTML += `
+                            <div class="media-item" onclick="openMediaViewer('${imagePath}', 'image')">
+                                <img src="${imagePath}" alt="Media" loading="lazy">
+                            </div>
+                        `;
+                    }
+                });
+                
+                item.media.videos.forEach(videoPath => {
+                    if (videoPath && videoPath.trim() !== '') {
+                        mediaHTML += `
+                            <div class="media-item" onclick="openMediaViewer('${videoPath}', 'video')">
+                                <video src="${videoPath}" preload="metadata"></video>
+                            </div>
+                        `;
+                    }
+                });
+                
+                mediaHTML += '</div>';
+                mediaContainer.innerHTML = mediaHTML;
+            } else {
+                mediaContainer.innerHTML = '';
+            }
+            
+            // Tech tags
             if (item.technologies && item.technologies.length > 0) {
                 document.getElementById('modal-tech').innerHTML = 
                     item.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
@@ -1311,6 +1165,38 @@
             if (event && event.target !== document.getElementById('modal')) return;
             
             document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Media viewer functions
+        function openMediaViewer(src, type) {
+            const viewer = document.getElementById('media-viewer');
+            const img = document.getElementById('viewer-image');
+            const video = document.getElementById('viewer-video');
+            
+            if (type === 'image') {
+                img.src = src;
+                img.style.display = 'block';
+                video.style.display = 'none';
+                video.pause();
+            } else if (type === 'video') {
+                video.src = src;
+                video.style.display = 'block';
+                img.style.display = 'none';
+            }
+            
+            viewer.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMediaViewer(event) {
+            if (event && event.target !== document.getElementById('media-viewer')) return;
+            
+            const viewer = document.getElementById('media-viewer');
+            const video = document.getElementById('viewer-video');
+            
+            viewer.classList.remove('active');
+            video.pause();
             document.body.style.overflow = 'auto';
         }
 
@@ -1330,32 +1216,35 @@
             }
         }
 
-        // Initialize theme (default to light mode)
+        // Initialize theme
         function initializeTheme() {
             const savedTheme = localStorage.getItem('theme');
-            
-            // Only set dark mode if explicitly saved as dark
             if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 document.getElementById('theme-icon').textContent = '☀️';
-            } else {
-                // Default to light mode
-                document.documentElement.removeAttribute('data-theme');
-                document.getElementById('theme-icon').textContent = '🌙';
             }
         }
 
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && document.getElementById('modal').classList.contains('active')) {
-                closeModal();
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const navLinks = document.querySelector('.nav-links');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (navLinks.classList.contains('active') && 
+                !navLinks.contains(e.target) && 
+                !mobileMenuBtn.contains(e.target)) {
+                closeMobileMenu();
             }
         });
 
-        // Add keyboard support for cards
+        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && e.target.classList.contains('card')) {
-                e.target.click();
+            if (e.key === 'Escape') {
+                if (document.getElementById('media-viewer').classList.contains('active')) {
+                    closeMediaViewer();
+                } else if (document.getElementById('modal').classList.contains('active')) {
+                    closeModal();
+                }
             }
         });
 
