@@ -249,6 +249,29 @@
       }
     },
     {
+      "id": "docapi",
+      "title": "Retrieval Augmented Generation (RAG) - Doc Metadata Extractor",
+      "summary": "Custom, comprehensive RAG pipeline that extracts, chunks, embeds, and intelligently extracts structured parameters from PDFs using advanced text processing and vector retrieval technologies.",
+      "description": "Implemented a retrieval-augmented generation (RAG) pipeline designed to extract, chunk, and embed text data primarily from PDFs, facilitating efficient document search and parameter extraction. It leverages advanced PDF parsing (including multi-column layout detection via pymupdf and unstructured io), builds document chunks for retrieval, and applies a sophisticated regex-based parameter extraction method that intelligently handles multi-line and noisy text data. The pipeline also supports integration with embedding models (sentence_transformers), vector databases (chromadb), and generative AI (google.genai) for downstream retrieval and generation tasks.",
+      "technologies": ["Colab Fold (Alpha Fold 2)", "Equibind", "Flask"],
+      "links": [
+        {
+          "name": "GitHub Repository",
+          "url": "https://github.com/yuvvantalreja/mini-alphafold",
+          "icon": "💻"
+        }
+      ],
+      "media": {
+        "images": [
+          "path/to/screenshot1.jpg",
+          "path/to/screenshot2.png"
+        ],
+        "videos": [
+          "path/to/demo-video.mp4"
+        ]
+      }
+    },
+    {
       "id": "bloodseg",
       "title": "Mask R-CNN - Blood Vessel Segmentation ",
       "summary": "Trained a custom Mask R-CNN (ResNet-50 FPN) in Detectron2 on a COCO-format dataset, using Python, OpenCV, and Google Colab to fine-tune for object detection and instance segmentation",
