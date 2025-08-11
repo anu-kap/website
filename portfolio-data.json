@@ -253,7 +253,7 @@
       "title": "Retrieval Augmented Generation (RAG) - Doc Metadata Extractor",
       "summary": "Custom, comprehensive RAG pipeline that extracts, chunks, embeds, and intelligently extracts structured parameters from PDFs using advanced text processing and vector retrieval technologies.",
       "description": "Implemented a retrieval-augmented generation (RAG) pipeline designed to extract, chunk, and embed text data primarily from PDFs, facilitating efficient document search and parameter extraction. It leverages advanced PDF parsing (including multi-column layout detection via pymupdf and unstructured io), builds document chunks for retrieval, and applies a sophisticated regex-based parameter extraction method that intelligently handles multi-line and noisy text data. The pipeline also supports integration with embedding models (sentence_transformers), vector databases (chromadb), and generative AI (google.genai) for downstream retrieval and generation tasks.",
-      "technologies": ["Colab Fold (Alpha Fold 2)", "Equibind", "Flask"],
+      "technologies": ["Chroma", "Hugging Face Sentence Transformer", "Google Genai", "Chromadb"],
       "links": [
         {
           "name": "GitHub Repository",
