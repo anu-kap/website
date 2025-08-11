@@ -229,13 +229,35 @@
       "AWS", "Docker", "Git", "OCR Technologies", "OSPREY Suite", "Jupyter Notebooks", "VS Code", "Linux", "OpenAI API", "LangChain"
     ]
   },
-  "projects": [
+  "projects": [{
+      "id": "globalmithackathon",
+      "title": "Global MIT Hackathon - Protein Fold Sandbox",
+      "summary": "We built a Flask + ColabFold + EquiBind protein sandbox that takes amino acid FASTA input, predicts 3D structure with alphafold2_ptm_model, compares sequences via Smith–Waterman (BLOSUM62), and visualizes results in 3Dmol.js.",
+      "description": "For the Global MIT Hackathon, our team built a Protein Fold Sandbox where users can input an amino acid sequence and explore its predicted 3D structure, compare it to other proteins, and even analyze ligand binding. The backend uses a Flask API to process sequences in FASTA format, runs ColabFold with the alphafold2_ptm_model to generate .pdb structures, and renders them interactively in the browser using 3Dmol.js. We added a Smith–Waterman local alignment with BLOSUM62 scoring for protein similarity search, plus EquiBind integration for predicting ligand–protein binding sites and energies.",
+      "technologies": ["Colab Fold (Alpha Fold 2)", "Equibind", "Flask"],
+      "links": [
+        {
+          "name": "GitHub Repository",
+          "url": "https://github.com/yuvvantalreja/mini-alphafold",
+          "icon": "💻"
+        }
+      ],
+      "media": {
+        "images": [
+          "path/to/screenshot1.jpg",
+          "path/to/screenshot2.png"
+        ],
+        "videos": [
+          "path/to/demo-video.mp4"
+        ]
+      }
+    },
     {
       "id": "hackcmu",
-      "title": "Hiking Companion App",
-      "summary": "Real-time hiking companion app that uses a Flask backend and a PyTorch neural network to identify wildlife from photos, log sightings with GPS data, and gamify exploration through a leaderboard.",
-      "description": "At HackCMU, we built a Hiking Companion app that helps users identify wildlife in real time. Using a mobile camera, hikers can snap a photo of an animal, which is then sent to a Flask backend. The backend stores sightings in a SQLite database via SQLAlchemy and runs a PyTorch neural network model (invoked via subprocess) to classify the animal and return the top prediction with confidence level. The app also logs GPS coordinates, timestamps, and base64-encoded images for each sighting, enabling features like a leaderboard of top wildlife reporters. Built with Python, Flask, SQLAlchemy, and PyTorch, this project combines computer vision, geolocation tracking, and gamification to make wildlife exploration interactive and educational.",
-      "technologies": ["Flask", "SQLite", "PyTorch", "OpenCV"],
+      "title": "Hack CMU - Hiking Companion App",
+      "summary": "Built a Flask + SQLite backend with a TensorFlow/Keras VGG16 model that lets hikers snap a photo, get the animal identified, and log sightings with GPS data and a leaderboard.",
+      "description": "For HackCMU, my team built a Hiking Companion app that helps people figure out what animals they spot on the trail. When you take a photo in the app, it gets sent to our Flask server, which saves the picture and location in a SQLite database and runs it through an animal recognition model we trained with TensorFlow and Keras. The model uses a VGG16 neural network we fine-tuned with a bunch of animal images, plus data augmentation and other tricks so it works better in real-life hiking conditions. We also made it track sightings over time and keep a leaderboard so hikers can see who’s spotted the most wildlife.",
+      "technologies": ["Flask", "SQLite", "Tensor Flow"],
       "links": [
         {
           "name": "GitHub Repository (frontend)",
