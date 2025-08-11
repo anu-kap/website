@@ -224,7 +224,8 @@
       "AWS", "Docker", "Git", "OCR Technologies", "OSPREY Suite", "Jupyter Notebooks", "VS Code", "Linux", "OpenAI API", "LangChain"
     ]
   },
-  "projects": [{
+  "projects": [
+    {
       "id": "globalmithackathon",
       "title": "Global MIT Hackathon - Protein Fold Sandbox",
       "summary": "We built a Flask + ColabFold + EquiBind protein sandbox that takes amino acid FASTA input, predicts 3D structure with alphafold2_ptm_model, compares sequences via Smith–Waterman (BLOSUM62), and visualizes results in 3Dmol.js.",
@@ -247,7 +248,8 @@
         ]
       }
     },
-    {"id": "bloodseg",
+    {
+      "id": "bloodseg",
       "title": "Mask R-CNN - Blood Vessel Segmentation ",
       "summary": "Trained a custom Mask R-CNN (ResNet-50 FPN) in Detectron2 on a COCO-format dataset, using Python, OpenCV, and Google Colab to fine-tune for object detection and instance segmentation",
       "description": "Built a custom object detection and instance segmentation pipeline using Meta's Detectron2 for an H&E stained tissue dataset from AHN and annotated in COCO format. The system uses Facebook AI’s Mask R-CNN model with a ResNet-50 FPN backbone, fine-tuned on our images for specialized object recognition. We registered our training and validation sets with register_coco_instances, visualized annotations with Detectron2’s Visualizer, and trained the model in Google Colab with custom learning rates, batch sizes, and iteration limits. The trained model can detect and segment our target classes with high precision, making it adaptable for real-world computer vision tasks.",
