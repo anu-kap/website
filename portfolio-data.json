@@ -1,0 +1,119 @@
+{
+  "personal": {
+    "name": "Anurag Kapila",
+    "email": "akapila@cs.cmu.edu",
+    "linkedin": "http://linkedin.com/in/anurag-kapila",
+    "title": "Mathematics & Computer Science Student",
+    "bio": "Passionate about machine learning, deep learning, and computational research. Currently pursuing B.S. in Mathematics and Computer Science at Carnegie Mellon University."
+  },
+  "education": {
+    "degree": "B.S. Mathematics and Computer Science",
+    "school": "Carnegie Mellon University",
+    "location": "Pittsburgh, PA",
+    "graduation": "May 2027",
+    "gpa": "3.7/4.0",
+    "coursework": [
+      "Probability and Computing",
+      "Intro to Computer Systems", 
+      "Constructive Logic",
+      "Principles of Imperative Computation",
+      "Principles of Functional Programming",
+      "Putnam Seminar",
+      "Multivariable Calculus"
+    ]
+  },
+  "experience": [
+    {
+      "id": "greychain",
+      "title": "Machine Learning Intern",
+      "company": "Grey Chain AI",
+      "period": "July 2025 - August 2025",
+      "summary": "Built enterprise-grade FastAPI for document metadata extraction",
+      "description": "Developed a comprehensive document processing solution from scratch, implementing advanced OCR techniques with PyTesseract for data ingestion. Created a custom RAG (Retrieval Augmented Generation) pipeline with model-agnostic retrieval capabilities, preset to Gemini 2.5 Flash for optimal performance. The FastAPI backend was designed for enterprise-scale document metadata extraction with high accuracy and efficiency.",
+      "technologies": ["FastAPI", "PyTesseract", "RAG", "Gemini 2.5 Flash", "OCR", "Python"]
+    },
+    {
+      "id": "packed",
+      "title": "SDE Intern",
+      "company": "Packed AI", 
+      "period": "May 2025 – July 2025",
+      "summary": "Enhanced AI search capabilities through RAG implementation",
+      "description": "Focused on improving AI-powered search functionality by implementing Retrieval Augmented Generation (RAG) systems. Built automated SQL command generation tools for seamless database integration. Deployed scalable applications using AWS cloud services and Docker containerization, ensuring robust production environments capable of handling enterprise-level traffic.",
+      "technologies": ["RAG", "SQL", "AWS", "Docker", "Python", "Database Integration"]
+    },
+    {
+      "id": "cmu_research",
+      "title": "Deep Learning Researcher",
+      "company": "Carnegie Mellon University",
+      "period": "December 2024 - Present",
+      "summary": "Research Assistant in Dr. Oana Carja's lab",
+      "description": "Working on cutting-edge medical AI applications, specifically developing CNN architectures for blood vessel segmentation in H&E-stained histological images. Created computational models for cfDNA (cell-free DNA) fragmentation to generate synthetic training data. Currently building PyTorch neural networks for automated tumor detection, combining computer vision with medical diagnostics.",
+      "technologies": ["CNN", "PyTorch", "Medical Imaging", "H&E Staining", "cfDNA", "Computer Vision"]
+    },
+    {
+      "id": "nexus",
+      "title": "AI Program Instructor", 
+      "company": "Nexus AI (Remote)",
+      "period": "March 2025 - July 2025",
+      "summary": "Taught comprehensive AI curriculum covering LLMs, CNNs, GANs",
+      "description": "Designed and delivered comprehensive AI education program covering Large Language Models, Convolutional Neural Networks, Generative Adversarial Networks, and multimodal AI systems. Created hands-on projects utilizing OpenAI and LangChain APIs. Provided mentorship in deep learning frameworks including PyTorch and TensorFlow, helping students build practical AI applications.",
+      "technologies": ["LLMs", "CNNs", "GANs", "OpenAI API", "LangChain", "PyTorch", "TensorFlow"]
+    },
+    {
+      "id": "duke",
+      "title": "Computational Chemistry Researcher",
+      "company": "Duke University",
+      "period": "May 2023 - December 2023", 
+      "summary": "Analyzed binding of trypsin complexes using K* algorithm",
+      "description": "Collaborated with Duke Ph.D. candidates on advanced computational chemistry research. Applied the K* algorithm from the OSPREY computational suite to analyze molecular binding interactions of various trypsin complexes. Performed extensive ligand mutation simulations to optimize binding affinity and developed methods to improve prediction accuracy for protein-ligand interactions.",
+      "technologies": ["OSPREY Suite", "K* Algorithm", "Molecular Modeling", "Ligand Simulation", "Computational Chemistry"]
+    }
+  ],
+  "awards": [
+    {
+      "id": "hrt_hackathon",
+      "title": "HRT x CMU Hackathon - 2nd Place Grand Prize",
+      "date": "November 2024",
+      "summary": "2nd place out of 129 participants",
+      "description": "Achieved 2nd place in the prestigious Hudson River Trading x Carnegie Mellon School of Computer Science Hack 112 Competition, competing against 129 talented participants. Developed an innovative multiplayer game that leveraged advanced graph theory concepts and implemented the Breadth-First Search algorithm to compute optimal shortest paths between actors (represented as nodes in the graph). The solution demonstrated both technical excellence and creative problem-solving.",
+      "technologies": ["Graph Theory", "BFS Algorithm", "Game Development", "Algorithm Design"]
+    },
+    {
+      "id": "usnco", 
+      "title": "3X USNCO National Honors Distinction",
+      "date": "October 2020 - February 2024",
+      "summary": "Top 150 nationally in U.S. National Chemistry Olympiad",
+      "description": "Consistently achieved Honors Distinction (Top 150 nationally) three times in the highly competitive U.S. National Chemistry Olympiad. Ranked in the top 2 at school level and successfully advanced to national rounds, which included rigorous multiple choice, free-response, and hands-on laboratory practical sections. This recognition demonstrates exceptional chemistry knowledge and problem-solving abilities at the national level.",
+      "technologies": ["Analytical Chemistry", "Organic Chemistry", "Physical Chemistry", "Laboratory Techniques"]
+    }
+  ],
+  "skills": {
+    "programming": [
+      "Python", "Java", "C", "C++", "JavaScript", "HTML", "CSS", "SML", "SQL"
+    ],
+    "frameworks": [
+      "TensorFlow", "PyTorch", "React", "Flask", "FastAPI"
+    ],
+    "specialties": [
+      "Retrieval-Augmented Generation (RAG)",
+      "PyTorch Modeling", 
+      "SQL Database Management",
+      "Machine Learning",
+      "Deep Learning",
+      "Computer Vision"
+    ],
+    "tools": [
+      "AWS", "Docker", "Git", "OCR", "OSPREY Suite"
+    ]
+  },
+  "projects": [
+    {
+      "id": "sample_project",
+      "title": "Sample Project",
+      "summary": "This is where you can add your projects",
+      "description": "Add your projects here by updating the portfolio-data.json file. Each project should have an id, title, summary, description, and technologies array.",
+      "technologies": ["Add", "Your", "Tech", "Stack"],
+      "link": "https://github.com/yourusername"
+    }
+  ]
+}
