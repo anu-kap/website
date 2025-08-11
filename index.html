@@ -89,6 +89,7 @@
             align-items: center;
             padding: 1rem 0;
             height: 70px;
+            position: relative;
         }
 
         .logo {
@@ -123,6 +124,31 @@
         .nav-links a.active {
             color: var(--text-accent);
             background: var(--card-hover);
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            padding: 0.75rem;
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .mobile-menu-btn:hover {
+            background: var(--card-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
         .theme-toggle {
@@ -618,8 +644,46 @@
                 padding: 0 1rem;
             }
 
+            .mobile-menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--blur-bg);
+                backdrop-filter: blur(20px) saturate(180%);
+                border-bottom: 1px solid var(--border-light);
+                flex-direction: column;
+                padding: 2rem 1rem;
+                gap: 0.5rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 90;
+                box-shadow: var(--shadow-lg);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-links a {
+                width: 100%;
+                text-align: center;
+                padding: 1rem;
+                font-size: 1.1rem;
+                border-radius: 1rem;
+                background: var(--card-bg);
+                border: 1px solid var(--border-light);
+                margin-bottom: 0.5rem;
             }
 
             .hero {
@@ -663,6 +727,11 @@
             .coursework {
                 grid-template-columns: 1fr;
             }
+
+            /* Fix mobile scrolling when menu is open */
+            body.mobile-menu-open {
+                overflow: hidden;
+            }
         }
 
         @media (max-width: 480px) {
@@ -699,16 +768,21 @@
             <nav class="nav">
                 <div class="logo">Anurag Kapila</div>
                 <ul class="nav-links">
-                    <li><a href="#" onclick="showSection('home')" class="active">Home</a></li>
-                    <li><a href="#" onclick="showSection('experience')">Experience</a></li>
-                    <li><a href="#" onclick="showSection('projects')">Projects</a></li>
-                    <li><a href="#" onclick="showSection('awards')">Awards</a></li>
-                    <li><a href="#" onclick="showSection('education')">Education</a></li>
-                    <li><a href="#" onclick="showSection('skills')">Skills</a></li>
+                    <li><a href="#" onclick="showSection('home'); closeMobileMenu();" class="active">Home</a></li>
+                    <li><a href="#" onclick="showSection('experience'); closeMobileMenu();">Experience</a></li>
+                    <li><a href="#" onclick="showSection('projects'); closeMobileMenu();">Projects</a></li>
+                    <li><a href="#" onclick="showSection('awards'); closeMobileMenu();">Awards</a></li>
+                    <li><a href="#" onclick="showSection('education'); closeMobileMenu();">Education</a></li>
+                    <li><a href="#" onclick="showSection('skills'); closeMobileMenu();">Skills</a></li>
                 </ul>
-                <button class="theme-toggle" onclick="toggleTheme()">
-                    <span id="theme-icon">🌙</span>
-                </button>
+                <div class="nav-controls">
+                    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                        <span id="menu-icon">☰</span>
+                    </button>
+                    <button class="theme-toggle" onclick="toggleTheme()">
+                        <span id="theme-icon">🌙</span>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
@@ -1091,6 +1165,44 @@
             `;
         }
 
+        // Mobile menu functions
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuIcon = document.getElementById('menu-icon');
+            const body = document.body;
+            
+            navLinks.classList.toggle('active');
+            body.classList.toggle('mobile-menu-open');
+            
+            if (navLinks.classList.contains('active')) {
+                menuIcon.textContent = '✕';
+            } else {
+                menuIcon.textContent = '☰';
+            }
+        }
+
+        function closeMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuIcon = document.getElementById('menu-icon');
+            const body = document.body;
+            
+            navLinks.classList.remove('active');
+            body.classList.remove('mobile-menu-open');
+            menuIcon.textContent = '☰';
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const navLinks = document.querySelector('.nav-links');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (navLinks.classList.contains('active') && 
+                !navLinks.contains(e.target) && 
+                !mobileMenuBtn.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
         // Navigation
         function showSection(sectionName) {
             // Hide all sections
@@ -1107,7 +1219,7 @@
             });
             
             // Find and activate the correct nav link
-            const targetLink = document.querySelector(`.nav-links a[onclick="showSection('${sectionName}')"]`);
+            const targetLink = document.querySelector(`.nav-links a[onclick*="showSection('${sectionName}')"]`);
             if (targetLink) {
                 targetLink.classList.add('active');
             }
