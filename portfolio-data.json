@@ -19,13 +19,8 @@
       },
       {
         "name": "GitHub",
-        "url": "https://github.com/anuragkapila",
+        "url": "https://github.com/anu-kap",
         "icon": "💻"
-      },
-      {
-        "name": "Resume",
-        "url": "#",
-        "icon": "📄"
       }
     ]
   },
@@ -239,6 +234,28 @@
         {
           "name": "GitHub Repository",
           "url": "https://github.com/yuvvantalreja/mini-alphafold",
+          "icon": "💻"
+        }
+      ],
+      "media": {
+        "images": [
+          "path/to/screenshot1.jpg",
+          "path/to/screenshot2.png"
+        ],
+        "videos": [
+          "path/to/demo-video.mp4"
+        ]
+      }
+    },
+    "id": "bloodseg",
+      "title": "Mask R-CNN - Blood Vessel Segmentation ",
+      "summary": "Trained a custom Mask R-CNN (ResNet-50 FPN) in Detectron2 on a COCO-format dataset, using Python, OpenCV, and Google Colab to fine-tune for object detection and instance segmentation",
+      "description": "Built a custom object detection and instance segmentation pipeline using Meta's Detectron2 for an H&E stained tissue dataset from AHN and annotated in COCO format. The system uses Facebook AI’s Mask R-CNN model with a ResNet-50 FPN backbone, fine-tuned on our images for specialized object recognition. We registered our training and validation sets with register_coco_instances, visualized annotations with Detectron2’s Visualizer, and trained the model in Google Colab with custom learning rates, batch sizes, and iteration limits. The trained model can detect and segment our target classes with high precision, making it adaptable for real-world computer vision tasks.",
+      "technologies": ["Mask R-CNN", "Meta Detectron2", "OpenCV"],
+      "links": [
+        {
+          "name": "GitHub Repository",
+          "url": "https://github.com/anu-kap/Blood-Vessel-Segmentation-Model/tree/main",
           "icon": "💻"
         }
       ],
