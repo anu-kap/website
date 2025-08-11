@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anurag Kapila - Portfolio</title>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --text-tertiary: #94a3b8;
+            --text-accent: #3b82f6;
+            --border-light: #e2e8f0;
+            --border-medium: #cbd5e1;
+            --card-bg: #ffffff;
+            --card-hover: rgba(248, 250, 252, 0.8);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-text: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --blur-bg: rgba(255, 255, 255, 0.8);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-tertiary: #64748b;
+            --text-accent: #60a5fa;
+            --border-light: #334155;
+            --border-medium: #475569;
+            --card-bg: #1e293b;
+            --card-hover: rgba(30, 41, 59, 0.8);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-text: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            --blur-bg: rgba(15, 23, 42, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--blur-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border-light);
+            z-index: 100;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 0.75rem;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-accent);
+            background: var(--card-hover);
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            padding: 0.75rem;
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .theme-toggle:hover {
+            background: var(--card-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Main Content */
+        .main {
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0 4rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .hero-name {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .hero-title {
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .hero-bio {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 1rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-md);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .contact-link:hover::before {
+            left: 100%;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-top: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: left;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--border-medium);
+        }
+
+        .card-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .card-meta {
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-summary {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .tech-tag {
+            background: var(--bg-tertiary);
+            color: var(--text-accent);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--border-light);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tech-tag:hover {
+            background: var(--text-accent);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 200;
+            backdrop-filter: blur(8px);
+            animation: modalFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 2rem;
+            padding: 3rem;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow-y: auto;
+            margin: 1rem;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-light);
+            position: relative;
+            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .modal-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.75rem;
+            border-radius: 1rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            background: var(--card-hover);
+            color: var(--text-primary);
+            transform: scale(1.05);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .skills-category {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .skills-category:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .skills-category h3 {
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.01em;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-primary);
+        }
+
+        .skill-item:hover {
+            background: var(--text-accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Education Section */
+        .education-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 2rem;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .education-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient-primary);
+        }
+
+        .education-header {
+            margin-bottom: 2rem;
+        }
+
+        .education-degree {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .education-school {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .education-gpa {
+            display: inline-block;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .coursework-section {
+            margin-top: 2rem;
+        }
+
+        .coursework-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .coursework {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .course {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 1rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: 1px solid var(--border-light);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .course:hover {
+            background: var(--card-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Loading State */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 50vh;
+            color: var(--text-secondary);
+        }
+
+        .loading-spinner {
+            width: 3rem;
+            height: 3rem;
+            border: 3px solid var(--border-light);
+            border-top: 3px solid var(--text-accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 4rem 0 3rem;
+            }
+
+            .hero-name {
+                font-size: 2.5rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .modal-content {
+                margin: 0.5rem;
+                padding: 2rem;
+                border-radius: 1.5rem;
+                max-height: 90vh;
+            }
+
+            .section-header {
+                padding-top: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .education-card {
+                padding: 2rem;
+            }
+
+            .coursework {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-link {
+                width: 100%;
+                max-width: 250px;
+                text-align: center;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus styles for accessibility */
+        .nav-links a:focus,
+        .theme-toggle:focus,
+        .contact-link:focus,
+        .card:focus {
+            outline: 2px solid var(--text-accent);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">Anurag Kapila</div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showSection('home')" class="active">Home</a></li>
+                    <li><a href="#" onclick="showSection('experience')">Experience</a></li>
+                    <li><a href="#" onclick="showSection('projects')">Projects</a></li>
+                    <li><a href="#" onclick="showSection('awards')">Awards</a></li>
+                    <li><a href="#" onclick="showSection('education')">Education</a></li>
+                    <li><a href="#" onclick="showSection('skills')">Skills</a></li>
+                </ul>
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <span id="theme-icon">🌙</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div id="loading" class="loading">
+                <div class="loading-spinner"></div>
+                <p>Loading portfolio...</p>
+            </div>
+            
+            <!-- Home Section -->
+            <section id="home" class="section">
+                <div class="hero">
+                    <h1 class="hero-name" id="hero-name">Anurag Kapila</h1>
+                    <p class="hero-title" id="hero-title">Mathematics & Computer Science Student</p>
+                    <p class="hero-bio" id="hero-bio">Loading...</p>
+                    <div class="contact-links">
+                        <a href="#" class="contact-link" id="email-link">✉️ Email</a>
+                        <a href="#" class="contact-link" id="linkedin-link" target="_blank">🔗 LinkedIn</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Experience</h2>
+                    <p class="section-subtitle">My professional journey in machine learning, research, and software development</p>
+                </div>
+                <div id="experience-cards" class="cards-grid"></div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Projects</h2>
+                    <p class="section-subtitle">Innovative solutions and creative implementations</p>
+                </div>
+                <div id="projects-cards" class="cards-grid"></div>
+            </section>
+
+            <!-- Awards Section -->
+            <section id="awards" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Awards & Recognition</h2>
+                    <p class="section-subtitle">Achievements in competitions and academic excellence</p>
+                </div>
+                <div id="awards-cards" class="cards-grid"></div>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Education</h2>
+                    <p class="section-subtitle">Academic foundation and continuous learning</p>
+                </div>
+                <div id="education-content"></div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Skills & Technologies</h2>
+                    <p class="section-subtitle">Technical expertise across multiple domains</p>
+                </div>
+                <div id="skills-content" class="skills-container"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title"></h2>
+                <div class="card-meta" id="modal-meta"></div>
+            </div>
+            <div class="modal-description" id="modal-description"></div>
+            <div class="tech-tags" id="modal-tech"></div>
+        </div>
+    </div>
+
+    <script>
+        let portfolioData = null;
+
+        // Load portfolio data with embedded fallback
+        async function loadData() {
+            // Use embedded data by default
+            portfolioData = getFallbackData();
+            
+            // Try to fetch external JSON file to override embedded data
+            try {
+                const response = await fetch('./portfolio-data.json');
+                
+                if (response.ok) {
+                    const text = await response.text();
+                    const externalData = JSON.parse(text);
+                    portfolioData = externalData;
+                    console.log('✅ Loaded data from portfolio-data.json');
+                } else {
+                    console.log('📄 Using embedded portfolio data (portfolio-data.json not found)');
+                }
+            } catch (error) {
+                // Silently use embedded data - no error shown to user
+                console.log('📄 Using embedded portfolio data');
+            }
+            
+            // Initialize with whatever data we have
+            initializePortfolio();
+            document.getElementById('loading').style.display = 'none';
+            showSection('home');
+        }
+
+        // Full portfolio data embedded as fallback
+        function getFallbackData() {
+            return {
+                "personal": {
+                    "name": "Anurag Kapila",
+                    "email": "akapila@cs.cmu.edu",
+                    "linkedin": "http://linkedin.com/in/anurag-kapila",
+                    "title": "Mathematics & Computer Science Student",
+                    "bio": "Passionate about machine learning, deep learning, and computational research. Currently pursuing B.S. in Mathematics and Computer Science at Carnegie Mellon University."
+                },
+                "education": {
+                    "degree": "B.S. Mathematics and Computer Science",
+                    "school": "Carnegie Mellon University",
+                    "location": "Pittsburgh, PA",
+                    "graduation": "May 2027",
+                    "gpa": "3.7/4.0",
+                    "coursework": [
+                        "Probability and Computing",
+                        "Intro to Computer Systems", 
+                        "Constructive Logic",
+                        "Principles of Imperative Computation",
+                        "Principles of Functional Programming",
+                        "Putnam Seminar",
+                        "Multivariable Calculus"
+                    ]
+                },
+                "experience": [
+                    {
+                        "id": "greychain",
+                        "title": "Machine Learning Intern",
+                        "company": "Grey Chain AI",
+                        "period": "July 2025 - August 2025",
+                        "summary": "Built enterprise-grade FastAPI for document metadata extraction",
+                        "description": "Developed a comprehensive document processing solution from scratch, implementing advanced OCR techniques with PyTesseract for data ingestion. Created a custom RAG (Retrieval Augmented Generation) pipeline with model-agnostic retrieval capabilities, preset to Gemini 2.5 Flash for optimal performance. The FastAPI backend was designed for enterprise-scale document metadata extraction with high accuracy and efficiency.",
+                        "technologies": ["FastAPI", "PyTesseract", "RAG", "Gemini 2.5 Flash", "OCR", "Python"]
+                    },
+                    {
+                        "id": "packed",
+                        "title": "SDE Intern",
+                        "company": "Packed AI", 
+                        "period": "May 2025 – July 2025",
+                        "summary": "Enhanced AI search capabilities through RAG implementation",
+                        "description": "Focused on improving AI-powered search functionality by implementing Retrieval Augmented Generation (RAG) systems. Built automated SQL command generation tools for seamless database integration. Deployed scalable applications using AWS cloud services and Docker containerization, ensuring robust production environments capable of handling enterprise-level traffic.",
+                        "technologies": ["RAG", "SQL", "AWS", "Docker", "Python", "Database Integration"]
+                    },
+                    {
+                        "id": "cmu_research",
+                        "title": "Deep Learning Researcher",
+                        "company": "Carnegie Mellon University",
+                        "period": "December 2024 - Present",
+                        "summary": "Research Assistant in Dr. Oana Carja's lab",
+                        "description": "Working on cutting-edge medical AI applications, specifically developing CNN architectures for blood vessel segmentation in H&E-stained histological images. Created computational models for cfDNA (cell-free DNA) fragmentation to generate synthetic training data. Currently building PyTorch neural networks for automated tumor detection, combining computer vision with medical diagnostics.",
+                        "technologies": ["CNN", "PyTorch", "Medical Imaging", "H&E Staining", "cfDNA", "Computer Vision"]
+                    },
+                    {
+                        "id": "nexus",
+                        "title": "AI Program Instructor", 
+                        "company": "Nexus AI (Remote)",
+                        "period": "March 2025 - July 2025",
+                        "summary": "Taught comprehensive AI curriculum covering LLMs, CNNs, GANs",
+                        "description": "Designed and delivered comprehensive AI education program covering Large Language Models, Convolutional Neural Networks, Generative Adversarial Networks, and multimodal AI systems. Created hands-on projects utilizing OpenAI and LangChain APIs. Provided mentorship in deep learning frameworks including PyTorch and TensorFlow, helping students build practical AI applications.",
+                        "technologies": ["LLMs", "CNNs", "GANs", "OpenAI API", "LangChain", "PyTorch", "TensorFlow"]
+                    },
+                    {
+                        "id": "duke",
+                        "title": "Computational Chemistry Researcher",
+                        "company": "Duke University",
+                        "period": "May 2023 - December 2023", 
+                        "summary": "Analyzed binding of trypsin complexes using K* algorithm",
+                        "description": "Collaborated with Duke Ph.D. candidates on advanced computational chemistry research. Applied the K* algorithm from the OSPREY computational suite to analyze molecular binding interactions of various trypsin complexes. Performed extensive ligand mutation simulations to optimize binding affinity and developed methods to improve prediction accuracy for protein-ligand interactions.",
+                        "technologies": ["OSPREY Suite", "K* Algorithm", "Molecular Modeling", "Ligand Simulation", "Computational Chemistry"]
+                    }
+                ],
+                "awards": [
+                    {
+                        "id": "hrt_hackathon",
+                        "title": "HRT x CMU Hackathon - 2nd Place Grand Prize",
+                        "date": "November 2024",
+                        "summary": "2nd place out of 129 participants",
+                        "description": "Achieved 2nd place in the prestigious Hudson River Trading x Carnegie Mellon School of Computer Science Hack 112 Competition, competing against 129 talented participants. Developed an innovative multiplayer game that leveraged advanced graph theory concepts and implemented the Breadth-First Search algorithm to compute optimal shortest paths between actors (represented as nodes in the graph). The solution demonstrated both technical excellence and creative problem-solving.",
+                        "technologies": ["Graph Theory", "BFS Algorithm", "Game Development", "Algorithm Design"]
+                    },
+                    {
+                        "id": "usnco", 
+                        "title": "3X USNCO National Honors Distinction",
+                        "date": "October 2020 - February 2024",
+                        "summary": "Top 150 nationally in U.S. National Chemistry Olympiad",
+                        "description": "Consistently achieved Honors Distinction (Top 150 nationally) three times in the highly competitive U.S. National Chemistry Olympiad. Ranked in the top 2 at school level and successfully advanced to national rounds, which included rigorous multiple choice, free-response, and hands-on laboratory practical sections. This recognition demonstrates exceptional chemistry knowledge and problem-solving abilities at the national level.",
+                        "technologies": ["Analytical Chemistry", "Organic Chemistry", "Physical Chemistry", "Laboratory Techniques"]
+                    }
+                ],
+                "skills": {
+                    "programming": [
+                        "Python", "Java", "C", "C++", "JavaScript", "HTML", "CSS", "SML", "SQL"
+                    ],
+                    "frameworks": [
+                        "TensorFlow", "PyTorch", "React", "Flask", "FastAPI"
+                    ],
+                    "specialties": [
+                        "Retrieval-Augmented Generation (RAG)",
+                        "PyTorch Modeling", 
+                        "SQL Database Management",
+                        "Machine Learning",
+                        "Deep Learning",
+                        "Computer Vision"
+                    ],
+                    "tools": [
+                        "AWS", "Docker", "Git", "OCR", "OSPREY Suite"
+                    ]
+                },
+                "projects": [
+                    {
+                        "id": "sample_project",
+                        "title": "Add Your Projects Here",
+                        "summary": "Create a portfolio-data.json file to add your projects",
+                        "description": "To add your projects, create a portfolio-data.json file in the same directory as this HTML file. The website will automatically load your project data from there. If the JSON file is not found, this embedded data is used as a fallback.",
+                        "technologies": ["JSON", "Configuration", "GitHub Pages"],
+                        "link": "https://github.com/yourusername"
+                    }
+                ]
+            };
+        }
+
+        // Initialize portfolio with data
+        function initializePortfolio() {
+            if (!portfolioData) return;
+
+            // Update hero section
+            document.getElementById('hero-name').textContent = portfolioData.personal.name;
+            document.getElementById('hero-title').textContent = portfolioData.personal.title;
+            document.getElementById('hero-bio').textContent = portfolioData.personal.bio;
+            document.getElementById('email-link').href = `mailto:${portfolioData.personal.email}`;
+            document.getElementById('linkedin-link').href = portfolioData.personal.linkedin;
+
+            // Generate cards and content
+            generateExperienceCards();
+            generateProjectCards();
+            generateAwardCards();
+            generateEducationContent();
+            generateSkillsContent();
+        }
+
+        // Generate experience cards
+        function generateExperienceCards() {
+            const container = document.getElementById('experience-cards');
+            if (!portfolioData.experience || portfolioData.experience.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary); grid-column: 1 / -1;">No experience data available. Please add to portfolio-data.json</p>';
+                return;
+            }
+            
+            container.innerHTML = portfolioData.experience.map(exp => `
+                <div class="card" onclick="openModal('${exp.id}', 'experience')" tabindex="0">
+                    <div class="card-header">
+                        <h3 class="card-title">${exp.title}</h3>
+                        <div class="card-meta">${exp.company} • ${exp.period}</div>
+                    </div>
+                    <div class="card-summary">${exp.summary}</div>
+                    <div class="tech-tags">
+                        ${exp.technologies.slice(0, 4).map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                        ${exp.technologies.length > 4 ? `<span class="tech-tag">+${exp.technologies.length - 4} more</span>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Generate project cards
+        function generateProjectCards() {
+            const container = document.getElementById('projects-cards');
+            if (!portfolioData.projects || portfolioData.projects.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary); grid-column: 1 / -1;">No projects data available. Please add to portfolio-data.json</p>';
+                return;
+            }
+            
+            container.innerHTML = portfolioData.projects.map(project => `
+                <div class="card" onclick="openModal('${project.id}', 'projects')" tabindex="0">
+                    <div class="card-header">
+                        <h3 class="card-title">${project.title}</h3>
+                        ${project.link ? `<div class="card-meta">🔗 <a href="${project.link}" target="_blank" onclick="event.stopPropagation()" style="color: var(--text-accent);">View Project</a></div>` : ''}
+                    </div>
+                    <div class="card-summary">${project.summary}</div>
+                    <div class="tech-tags">
+                        ${project.technologies.slice(0, 4).map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                        ${project.technologies.length > 4 ? `<span class="tech-tag">+${project.technologies.length - 4} more</span>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Generate award cards
+        function generateAwardCards() {
+            const container = document.getElementById('awards-cards');
+            if (!portfolioData.awards || portfolioData.awards.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary); grid-column: 1 / -1;">No awards data available. Please add to portfolio-data.json</p>';
+                return;
+            }
+            
+            container.innerHTML = portfolioData.awards.map(award => `
+                <div class="card" onclick="openModal('${award.id}', 'awards')" tabindex="0">
+                    <div class="card-header">
+                        <h3 class="card-title">${award.title}</h3>
+                        <div class="card-meta">🏆 ${award.date}</div>
+                    </div>
+                    <div class="card-summary">${award.summary}</div>
+                    ${award.technologies ? `<div class="tech-tags">
+                        ${award.technologies.slice(0, 4).map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                        ${award.technologies.length > 4 ? `<span class="tech-tag">+${award.technologies.length - 4} more</span>` : ''}
+                    </div>` : ''}
+                </div>
+            `).join('');
+        }
+
+        // Generate education content
+        function generateEducationContent() {
+            const container = document.getElementById('education-content');
+            const edu = portfolioData.education;
+            
+            container.innerHTML = `
+                <div class="education-card">
+                    <div class="education-header">
+                        <h3 class="education-degree">${edu.degree}</h3>
+                        <div class="education-school">${edu.school} • ${edu.location}</div>
+                        <div class="card-meta">Expected Graduation: ${edu.graduation}</div>
+                        <div class="education-gpa">GPA: ${edu.gpa}</div>
+                    </div>
+                    <div class="coursework-section">
+                        <h4 class="coursework-title">📚 Relevant Coursework</h4>
+                        <div class="coursework">
+                            ${edu.coursework.map(course => `<div class="course">${course}</div>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Generate skills content
+        function generateSkillsContent() {
+            const container = document.getElementById('skills-content');
+            const skills = portfolioData.skills;
+            
+            container.innerHTML = `
+                <div class="skills-category">
+                    <h3>💻 Programming Languages</h3>
+                    <div class="skills-list">
+                        ${skills.programming.map(skill => `<div class="skill-item">${skill}</div>`).join('')}
+                    </div>
+                </div>
+                <div class="skills-category">
+                    <h3>🚀 Frameworks & Libraries</h3>
+                    <div class="skills-list">
+                        ${skills.frameworks.map(skill => `<div class="skill-item">${skill}</div>`).join('')}
+                    </div>
+                </div>
+                <div class="skills-category">
+                    <h3>🎯 Specialties</h3>
+                    <div class="skills-list">
+                        ${skills.specialties.map(skill => `<div class="skill-item">${skill}</div>`).join('')}
+                    </div>
+                </div>
+                <div class="skills-category">
+                    <h3>🛠️ Tools & Technologies</h3>
+                    <div class="skills-list">
+                        ${skills.tools.map(skill => `<div class="skill-item">${skill}</div>`).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Navigation
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName).classList.add('active');
+            
+            // Update nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Find and activate the correct nav link
+            const targetLink = document.querySelector(`.nav-links a[onclick="showSection('${sectionName}')"]`);
+            if (targetLink) {
+                targetLink.classList.add('active');
+            }
+        }
+
+        // Modal functions
+        function openModal(id, type) {
+            const item = portfolioData[type].find(item => item.id === id);
+            if (!item) return;
+
+            document.getElementById('modal-title').textContent = item.title;
+            document.getElementById('modal-meta').textContent = 
+                type === 'experience' ? `${item.company} • ${item.period}` :
+                type === 'awards' ? `🏆 ${item.date}` : 
+                type === 'projects' && item.link ? `🔗 Project Link` : '';
+            
+            document.getElementById('modal-description').innerHTML = item.description;
+            
+            if (item.technologies && item.technologies.length > 0) {
+                document.getElementById('modal-tech').innerHTML = 
+                    item.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
+            } else {
+                document.getElementById('modal-tech').innerHTML = '';
+            }
+
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== document.getElementById('modal')) return;
+            
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Theme toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Initialize theme (default to light mode)
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            
+            // Only set dark mode if explicitly saved as dark
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.getElementById('theme-icon').textContent = '☀️';
+            } else {
+                // Default to light mode
+                document.documentElement.removeAttribute('data-theme');
+                document.getElementById('theme-icon').textContent = '🌙';
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('modal').classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Add keyboard support for cards
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.target.classList.contains('card')) {
+                e.target.click();
+            }
+        });
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTheme();
+            loadData();
+        });
+    </script>
+</body>
+</html>
